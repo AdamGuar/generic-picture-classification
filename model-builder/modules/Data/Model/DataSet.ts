@@ -1,14 +1,4 @@
-class DataSetModel {
-    trainData: SetModel
-    testData: SetModel
-
-    constructor(){
-        this.testData = new SetModel();
-        this.trainData = new SetModel();
-    };
-};
-
-class SetModel {
+class StatsModel {
     categories: {
         categoryName: string,
         images: any[]
@@ -16,9 +6,10 @@ class SetModel {
     labels: { labelName: string, labelId: number }[] = []
 }
 
+
 class TensorModel {
     images: any[] = []
     labels: any[] = []
 }
 
-export { DataSetModel, SetModel, TensorModel }
+export { StatsModel, TensorModel }

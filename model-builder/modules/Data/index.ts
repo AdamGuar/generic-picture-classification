@@ -1,4 +1,4 @@
-import { DataSetModel, SetModel } from "./Model/DataSet"
+import { StatsModel, TensorModel } from "./Model/DataSet"
 import { DataLoader } from "./DataLoader"
 
-export { DataSetModel, DataLoader, SetModel }
+export { StatsModel, DataLoader, TensorModel }

@@ -1,4 +1,4 @@
-import { DataLoader, DataSetModel, SetModel } from './modules/Data'
+import { DataLoader, StatsModel, TensorModel } from './modules/Data'
 import path from 'path'
 
 const dataLoader: DataLoader = new DataLoader();
@@ -8,9 +8,8 @@ dataLoader.loadData({
     testPath: path.join('../data-sets/normalized/flowers','test'),
 });
 
-const trainingSet: SetModel = dataLoader.getTrainingSet();
-const testingSet: SetModel = dataLoader.getTestSet();
-
+const trainingSet: StatsModel = dataLoader.getTrainingStats();
+const testingSet: StatsModel = dataLoader.getTestStats();
 console.log(`TRAIN DATA:`);
 console.log(`Number of categories: ${trainingSet.categories.length}`);
 
