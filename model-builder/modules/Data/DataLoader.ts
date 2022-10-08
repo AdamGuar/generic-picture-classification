@@ -1,8 +1,8 @@
-import { StatsModel, TensorModel } from './Model/DataSet'
+import { StatsModel, TensorModel } from './DataModel/DataSet'
 import fs from 'fs';
 import path from 'path';
 
-import tf from '@tensorflow/tfjs-node-gpu';
+import { node, scalar } from '@tensorflow/tfjs-node-gpu';
 
 export class DataLoader {
 
@@ -24,8 +24,8 @@ export class DataLoader {
             }
         }
 
-        //this.trainTensor = this.loadTensorData(params.trainPath);
-        //this.testTensor = this.loadTensorData(params.testPath);
+        this.trainTensor = this.loadTensorData(params.trainPath);
+        this.testTensor = this.loadTensorData(params.testPath);
     }
 
     private areLabelsLengthValid(): boolean {
@@ -60,10 +60,10 @@ export class DataLoader {
             const categoryDir = fs.readdirSync(path.join(dataPath, category));
             categoryDir.forEach(fileInCategory => {
                 const buffer = fs.readFileSync(path.join(dataPath, category, fileInCategory));
-                const imageTensor = tf.node.decodeImage(buffer)
+                const imageTensor = node.decodeImage(buffer)
                     .resizeNearestNeighbor([96, 96])
                     .toFloat()
-                    .div(tf.scalar(255.0))
+                    .div(scalar(255.0))
                     .expandDims();
                     data.images.push(imageTensor);
                     data.labels.push(index);
