@@ -1,8 +1,8 @@
-import { StatsModel, TensorModel } from './DataModel/DataSet'
+import { FlattenedTensor, StatsModel, TensorModel } from './DataModel/DataSet'
 import fs from 'fs';
 import path from 'path';
 
-import { node, scalar } from '@tensorflow/tfjs-node-gpu';
+import { node, scalar, concat, oneHot, tensor1d } from '@tensorflow/tfjs-node-gpu';
 
 export class DataLoader {
 
@@ -65,20 +65,27 @@ export class DataLoader {
                     .toFloat()
                     .div(scalar(255.0))
                     .expandDims();
-                    data.images.push(imageTensor);
-                    data.labels.push(index);
+                data.images.push(imageTensor);
+                data.labels.push(index);
             });
         });
 
         return data;
     }
 
-    getTrainingTensor(): TensorModel {
-        return this.trainTensor;
+    private flattenTensor(tensor: TensorModel): FlattenedTensor {
+        return {
+            images: concat(tensor.images),
+            labels: oneHot(tensor1d(tensor.labels, 'int32'), 5).toFloat()
+        }
+    }
+
+    getTrainingTensorFlattened(): FlattenedTensor {
+        return this.flattenTensor(this.trainTensor);
     };
 
-    getTestTensor(): TensorModel {
-        return this.testTensor;
+    getTestTensorFlattened(): FlattenedTensor {
+        return this.flattenTensor(this.testTensor);
     }
 
     getTrainingStats(): StatsModel {

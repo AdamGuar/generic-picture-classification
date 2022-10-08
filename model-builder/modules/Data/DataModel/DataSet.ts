@@ -12,4 +12,9 @@ class TensorModel {
     labels: any[] = []
 }
 
-export { StatsModel, TensorModel }
+class FlattenedTensor {
+    images: any;
+    labels: any;
+}
+
+export { StatsModel, TensorModel, FlattenedTensor }

@@ -1,9 +1,14 @@
 import { DataLoader, StatsModel, TensorModel } from './modules/Data'
 import path from 'path'
 
-import ts from '@tensorflow/tfjs';
+import ts, { train } from '@tensorflow/tfjs';
 
-import { ModelArchitectureProvider, CategoricalCrossentropyArchitecture } from './modules/Model';
+import waitForUserInput from 'wait-for-user-input';
+
+import { ModelArchitectureProvider, CategoricalCrossentropyArchitecture, NewArchitecture } from './modules/Model';
+import { fileSystem } from '@tensorflow/tfjs-node-gpu/dist/io';
+
+import { writeFileSync } from 'fs'
 
 
 async function main() {
@@ -42,20 +47,25 @@ async function main() {
     console.log(`Model architecture ready!`)
     model.summary();
 
-    const validationSplit = 0.15;
-
+    
     console.log('Model fitting with training tensor...');
-    const trainingTensor = dataLoader.getTrainingTensor();
+    const trainingTensor = dataLoader.getTrainingTensorFlattened();
+
+    console.log(`Tensor images length: ${trainingTensor.images.length}, labels length: ${trainingTensor.labels.length}`)
+
+    const input = await waitForUserInput('Click any key to start fitting');
+
+    const validationSplit = 0.15;
 
    // try {
         await model.fit(trainingTensor.images, trainingTensor.labels, {
-            epochs: 2,
-            batchSize: 2,
+            epochs: 10,
+            batchSize: 1,
             validationSplit
         });
 
         console.log('Fitting done. Evaluating model with test tensor');
-        const testTensor = dataLoader.getTestTensor();
+        const testTensor = dataLoader.getTestTensorFlattened();
         const evalOutput = model.evaluate(testTensor.images, testTensor.labels);
 
         console.log(

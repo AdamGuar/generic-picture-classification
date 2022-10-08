@@ -35,7 +35,7 @@ export class CategoricalCrossentropyArchitecture implements ModelArchitecturePro
     buildModel(): Sequential {
         const model = sequential();
         model.add(layers.conv2d({
-            inputShape: [96, 96, 1],
+            inputShape: [96, 96, 3],
             filters: this.first_filters,
             kernelSize: this.kernel_size,
             activation: 'relu',
