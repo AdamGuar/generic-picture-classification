@@ -1,0 +1,5 @@
+{
+    "epochs": 20,
+    "validationSplit": 0.15,
+    "batchSize": 4
+}

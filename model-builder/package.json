@@ -2,11 +2,11 @@
   "name": "model-builder",
   "version": "1.0.0",
   "description": "",
-  "main": "bin/index.js",
-  "bin": "bin/index.js",
+  "main": "bin/app.js",
+  "bin": "bin/app.js",
   "scripts": {
-    "build": "tsc",
-    "start": "tsc && node bin/index.js",
+    "build": "tsc && cp -r fittingParams/ bin/",
+    "start": "npm run build && node bin/app.js -d \"../data-sets/aliens-humans-2\" -g -f \"./fittingParams/fitting.json\"",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "author": "Adam Wozniak",
@@ -28,6 +28,7 @@
   "dependencies": {
     "@tensorflow/tfjs": "^3.21.0",
     "@tensorflow/tfjs-node-gpu": "^3.21.0",
+    "command-line-args": "^5.2.1",
     "wait-for-user-input": "^1.0.0"
   }
 }

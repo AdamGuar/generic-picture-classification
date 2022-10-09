@@ -2,7 +2,7 @@ import { FlattenedTensor, StatsModel, TensorModel } from './DataModel/DataSet'
 import fs from 'fs';
 import path from 'path';
 
-import { node, scalar, concat, oneHot, tensor1d } from '@tensorflow/tfjs-node-gpu';
+import { node, scalar, concat, oneHot, tensor1d, image } from '@tensorflow/tfjs-node-gpu';
 
 export class DataLoader {
 
@@ -62,7 +62,7 @@ export class DataLoader {
                 const buffer = fs.readFileSync(path.join(dataPath, category, fileInCategory));
                 const imageTensor = node.decodeImage(buffer)
                     .resizeNearestNeighbor([96, 96])
-                    .toFloat()
+                    .toInt()
                     .div(scalar(255.0))
                     .expandDims();
                 data.images.push(imageTensor);

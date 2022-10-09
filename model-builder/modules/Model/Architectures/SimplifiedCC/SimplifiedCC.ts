@@ -2,7 +2,7 @@ import { ModelArchitectureProvider } from "../../ModelArchitectureProvider";
 
 import { Sequential, sequential, layers, train } from '@tensorflow/tfjs';
 
-export class NewArchitecture implements ModelArchitectureProvider {
+export class SimplifiedCC implements ModelArchitectureProvider {
 
     private kernel_size: number[] = [3, 3];
     private pool_size: [number, number] | number = [2, 2];
@@ -54,8 +54,8 @@ export class NewArchitecture implements ModelArchitectureProvider {
         return cnn;
     }
 
-    static getDefault(): NewArchitecture {
-        return new NewArchitecture();
+    static getDefault(): SimplifiedCC {
+        return new SimplifiedCC();
     }
 
 

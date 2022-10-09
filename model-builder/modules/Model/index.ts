@@ -1,5 +1,5 @@
 import { ModelArchitectureProvider } from "./ModelArchitectureProvider";
 import { CategoricalCrossentropyArchitecture } from "./Architectures/CategoricalCrossentropy/CategoricalCrossentropyArchitecture";
-import { NewArchitecture } from "./Architectures/New/CategoricalCrossentropyArchitecture";
+import { SimplifiedCC } from "./Architectures/SimplifiedCC/SimplifiedCC";
 
-export { ModelArchitectureProvider, CategoricalCrossentropyArchitecture, NewArchitecture }
+export { ModelArchitectureProvider, CategoricalCrossentropyArchitecture, SimplifiedCC }
