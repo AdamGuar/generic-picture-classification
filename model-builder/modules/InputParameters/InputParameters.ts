@@ -9,7 +9,7 @@ export class InputParameters {
     public enhancedLogging: boolean = false;
     public interactiveMode: boolean = true;
 
-    public fittingParams: string = null;
+    public modelParams: string = null;
     public modelOut: string = './outModel/model'
 
     public static buildClOptions() {
@@ -19,7 +19,7 @@ export class InputParameters {
         { name: 'testSet', alias: 't', type: String },
         { name: 'enhancedLogging', alias: 'g', type: Boolean, defaultOption: false },
         { name: 'interactiveMode', alias: 'i', type: Boolean, defaultOption: false },
-        { name: 'fittingParams', alias: 'f', type: String, defaultOption: './fittingParams/fitting.json' },
+        { name: 'modelParams', alias: 'm', type: String, defaultOption: './modelParams/modelParams.json' },
 
         { name: 'modelOut', alias: 'o', type: String, defaultOption: './outModel/model' },
       ];

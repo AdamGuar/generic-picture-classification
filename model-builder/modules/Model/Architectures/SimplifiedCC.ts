@@ -1,18 +1,9 @@
-import { ModelArchitectureProvider } from "../../ModelArchitectureProvider";
+import { ModelArchitecture } from "../ModelArchitecture";
 
 import { Sequential, sequential, layers, train } from '@tensorflow/tfjs';
 
-export class SimplifiedCC implements ModelArchitectureProvider {
+export class SimplifiedCC implements ModelArchitecture {
 
-    private kernel_size: number[] = [3, 3];
-    private pool_size: [number, number] | number = [2, 2];
-
-    private first_filters: number = 64;
-    private second_filters: number = 128;
-    private third_filters: number = 512;
-
-    private dropout_conv: number = 0.3;
-    private dropout_dense: number = 0.3;
 
     buildModel(): Sequential {
         //1
@@ -28,6 +19,17 @@ export class SimplifiedCC implements ModelArchitectureProvider {
         }));
         cnn.add(layers.maxPooling2d({ poolSize: [2, 2], strides: [2, 2] }));
 
+        // 2
+        cnn.add(layers.conv2d({
+            kernelSize: 5,
+            filters: 16,
+            strides: 1,
+            activation: 'relu',
+            kernelInitializer: 'varianceScaling'
+        }));
+        cnn.add(layers.maxPooling2d({ poolSize: [2, 2], strides: [2, 2] }));
+
+         // 3
         cnn.add(layers.conv2d({
             kernelSize: 5,
             filters: 16,
@@ -38,7 +40,6 @@ export class SimplifiedCC implements ModelArchitectureProvider {
         cnn.add(layers.maxPooling2d({ poolSize: [2, 2], strides: [2, 2] }));
 
         cnn.add(layers.flatten());
-
         cnn.add(layers.dense({
             units: 5,
             kernelInitializer: 'varianceScaling',
@@ -54,7 +55,7 @@ export class SimplifiedCC implements ModelArchitectureProvider {
         return cnn;
     }
 
-    static getDefault(): SimplifiedCC {
+    static getDefault(): ModelArchitecture {
         return new SimplifiedCC();
     }
 

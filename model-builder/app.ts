@@ -3,8 +3,8 @@ import ts from '@tensorflow/tfjs';
 import waitForUserInput from 'wait-for-user-input';
 
 import { DataLoader, StatsModel } from './modules/Data'
-import { ModelArchitectureProvider, CategoricalCrossentropyArchitecture, SimplifiedCC } from './modules/Model';
-import { InputParameters, FittingsParams } from './modules/InputParameters';
+import * as modelUtils from './modules/Model';
+import { InputParameters, ModelParams } from './modules/InputParameters';
 import { AppExceptionHandler } from './modules/Exception'
 
 
@@ -12,8 +12,13 @@ import { AppExceptionHandler } from './modules/Exception'
 async function main() {
 
     const options: InputParameters = commandLineArgs(InputParameters.buildClOptions());
+    const modelParams = ModelParams.loadFromFile(options.modelParams);
 
-    const dataLoader: DataLoader = new DataLoader();
+    const dataLoader: DataLoader = new DataLoader(
+        modelParams.architecture.input.size,
+        modelParams.architecture.input.channels,
+        modelParams.architecture.input.scalar_transformation
+    );
 
     dataLoader.loadData({
         trainPath: InputParameters.getTrainingSetPath(options),
@@ -29,7 +34,7 @@ async function main() {
 
 
     console.log(`Getting model architecure...`);
-    const modelitectureProvider: ModelArchitectureProvider = SimplifiedCC.getDefault();
+    const modelitectureProvider: modelUtils.ModelArchitecture = new modelUtils[modelParams.architecture.architectureName].getDefault();
 
     const model: ts.Sequential = modelitectureProvider.buildModel();
     console.log(`Model architecture ready, Selected architecture: ${JSON.stringify(typeof (modelitectureProvider))}`);
@@ -40,15 +45,13 @@ async function main() {
 
     if (options.interactiveMode) await waitForUserInput('Click any key to start fitting the model');
 
-    const fittingParams = FittingsParams.loadFromFile(options.fittingParams);
-
-    console.log(`Model will be trained using following parameters: Epochs: ${fittingParams.epochs}, BatchSize: ${fittingParams.batchSize}, ValidationSplit: ${fittingParams.validationSplit}}`)
+    console.log(`Model will be trained using following parameters: Epochs: ${modelParams.training.epochs}, BatchSize: ${modelParams.training.batchSize}, ValidationSplit: ${modelParams.training.validationSplit}}`)
 
 
     await model.fit(trainingTensor.images, trainingTensor.labels, {
-        epochs: fittingParams.epochs,
-        batchSize: fittingParams.batchSize,
-        validationSplit: fittingParams.validationSplit
+        epochs: modelParams.training.epochs,
+        batchSize: modelParams.training.batchSize,
+        validationSplit: modelParams.training.validationSplit
     });
 
     console.log('Fitting done. Evaluating model with test tensor');

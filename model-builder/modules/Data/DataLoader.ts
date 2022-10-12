@@ -12,6 +12,16 @@ export class DataLoader {
     private trainTensor: TensorModel = new TensorModel();
     private testTensor: TensorModel = new TensorModel();
 
+    private size: [number, number];
+    private channels: number
+    private scalar_transformation: number;
+
+    public constructor(size: [number, number], channels: number, scalar_transformation: number) {
+        this.size = size;
+        this.channels = channels,
+        this.scalar_transformation = scalar_transformation
+    }
+
     loadData(params: { trainPath: string, testPath: string }): void {
 
         this.trainStats = this.loadStats(params.trainPath);
@@ -60,10 +70,10 @@ export class DataLoader {
             const categoryDir = fs.readdirSync(path.join(dataPath, category));
             categoryDir.forEach(fileInCategory => {
                 const buffer = fs.readFileSync(path.join(dataPath, category, fileInCategory));
-                const imageTensor = node.decodeImage(buffer)
-                    .resizeNearestNeighbor([96, 96])
+                const imageTensor = node.decodeImage(buffer,this.channels)
+                    .resizeNearestNeighbor(this.size)
                     .toInt()
-                    .div(scalar(255.0))
+                    .div(scalar(this.scalar_transformation))
                     .expandDims();
                 data.images.push(imageTensor);
                 data.labels.push(index);

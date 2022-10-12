@@ -1,4 +1,4 @@
 import { InputParameters } from "./InputParameters";
-import { FittingsParams } from "./FittingsParams";
+import { ModelParams } from "./ModelParams";
 
-export { InputParameters, FittingsParams }
+export { InputParameters, ModelParams }

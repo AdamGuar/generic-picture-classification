@@ -1,0 +1,15 @@
+{
+    "training": {
+        "epochs": 20,
+        "validationSplit": 0.15,
+        "batchSize": 4
+    },
+    "architecture": {
+        "input": {
+            "size": [96,96],
+            "channels": 3,
+            "scalar_transformation": 255.0
+        },
+        "architectureName": "SimplifiedBC" 
+    }
+}

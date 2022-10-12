@@ -5,8 +5,8 @@
   "main": "bin/app.js",
   "bin": "bin/app.js",
   "scripts": {
-    "build": "tsc && cp -r fittingParams/ bin/",
-    "start": "npm run build && node bin/app.js -d \"../data-sets/aliens-humans-2\" -g -f \"./fittingParams/fitting.json\"",
+    "build": "tsc && cp -r modelParams/ bin/",
+    "start": "npm run build && node bin/app.js -d \"../data-sets/aliens-humans-2\" -g -m \"./modelParams/modelParams.json\" -o \"./outModel\"",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "author": "Adam Wozniak",
