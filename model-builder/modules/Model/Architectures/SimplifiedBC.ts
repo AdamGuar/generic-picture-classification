@@ -32,7 +32,7 @@ export class SimplifiedBC implements ModelArchitecture {
          // 3
         cnn.add(layers.conv2d({
             kernelSize: 5,
-            filters: 16,
+            filters: 32,
             strides: 1,
             activation: 'relu',
             kernelInitializer: 'varianceScaling'

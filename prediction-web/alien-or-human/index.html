@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Extraterestial or Human?</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="header">
+      <header>
+        <h1>Extraterestial or Human?</h1>
+        <h2>Check it with this simple tool!</h2>
+      </header>
+    </div>
+    <div class="margin"></div>
+    <div class="image-selection">
+      <div id="resultLoader" class="result-loader">
+        <h3 class="result-blink">Calculating . . .</h1>
+      </div>
+      <div id="resultBlock" class="result-info">
+        <h3 id="resultOut" class="result-blink">I am 99% sure it's alien!!</h1>
+      </div>
+      <div class="img-block-el">
+        <img id="imgPlaceholder" src="https://via.placeholder.com/500" />
+      </div>
+      <div class="img-block-el">
+        <input id="imgSelection" type="file" accept="image/*" />
+      </div>
+      <div id="modelLoader">
+        <p class="model-loader">Super complex AI Model loading...</p>
+      </div>
+      <button id="predictButton" class="predict-button"> Check extraterestialness </button>
+
+    </div>
+    <div class="margin-right">
+    </div>
+    <div class="footer"></div>
+
+  </div>
+
+
+
+
+  <script src="index.js"></script>
+</body>
+
+</html>
