@@ -1,6 +1,6 @@
 {
     "training": {
-        "epochs": 20,
+        "epochs": 5,
         "validationSplit": 0.15,
         "batchSize": 4
     },
@@ -10,6 +10,57 @@
             "channels": 3,
             "scalar_transformation": 255.0
         },
-        "architectureName": "SimplifiedBC" 
+        "architectureName": "GenericCNN",
+        "layerSettings": {
+            "firstLayer": {
+                "inputShape": [96, 96, 3],
+                "kernelSize": 5,
+                "filters": 8,
+                "strides": 1,
+                "activation": "relu",
+                "kernelInitializer": "varianceScaling",
+                "pooling_poolSize": [2,2],
+                "pooling_strides": [2,2]
+            },
+            "middleLayers": [
+                {
+                    "kernelSize": 5,
+                    "filters": 16,
+                    "strides": 1,
+                    "activation": "relu",
+                    "kernelInitializer": "varianceScaling",
+                    "pooling_poolSize": [2,2],
+                    "pooling_strides": [2,2]
+                },
+                {
+                    "kernelSize": 5,
+                    "filters": 32,
+                    "strides": 1,
+                    "activation": "relu",
+                    "kernelInitializer": "varianceScaling",
+                    "pooling_poolSize": [2,2],
+                    "pooling_strides": [2,2]
+                },
+                {
+                    "kernelSize": 5,
+                    "filters": 64,
+                    "strides": 1,
+                    "activation": "relu",
+                    "kernelInitializer": "varianceScaling",
+                    "pooling_poolSize": [2,2],
+                    "pooling_strides": [2,2]
+                }
+            ],
+            "dense": {
+                "units": 5,
+                "kernelInitializer": "varianceScaling",
+                "activation": "softmax"
+            },
+            "compile": {
+                "optimizer": "adam",
+                "loss": "binaryCrossentropy",
+                "metrics": ["accuracy"]
+            }
+        }
     }
 }

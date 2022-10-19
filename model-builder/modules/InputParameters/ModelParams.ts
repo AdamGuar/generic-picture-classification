@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs';
+import { LayerSettings } from './LayerSettings';
 
 export class ModelParams {
 
@@ -14,7 +15,8 @@ export class ModelParams {
             channels: number,
             scalar_transformation: number
         }
-        architectureName: string
+        architectureName: string,
+        layerSettings: LayerSettings
     }
 
     public static loadFromFile(filePath): ModelParams {

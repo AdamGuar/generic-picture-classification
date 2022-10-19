@@ -35,6 +35,7 @@ async function main() {
 
     console.log(`Getting model architecure...`);
     const modelitectureProvider: modelUtils.ModelArchitecture = new modelUtils[modelParams.architecture.architectureName].getDefault();
+    modelitectureProvider.setLayerSettings(modelParams.architecture.layerSettings);
 
     const model: ts.Sequential = modelitectureProvider.buildModel();
     console.log(`Model architecture ready, Selected architecture: ${JSON.stringify(typeof (modelitectureProvider))}`);

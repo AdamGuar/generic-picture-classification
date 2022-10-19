@@ -1,9 +1,12 @@
 import { ModelArchitecture } from "../ModelArchitecture";
 
 import { Sequential, sequential, layers, train } from '@tensorflow/tfjs';
+import { LayerSettings } from "../../InputParameters";
 
 export class SimplifiedCC implements ModelArchitecture {
-
+    
+    setLayerSettings(layerSettings: LayerSettings) {
+    }
 
     buildModel(): Sequential {
         //1

@@ -2,7 +2,7 @@ import { FlattenedTensor, StatsModel, TensorModel } from './DataModel/DataSet'
 import fs from 'fs';
 import path from 'path';
 
-import { node, scalar, concat, oneHot, tensor1d, image } from '@tensorflow/tfjs-node-gpu';
+import { node, scalar, concat, oneHot, tensor1d } from '@tensorflow/tfjs-node';
 
 export class DataLoader {
 

@@ -6,7 +6,7 @@
   "bin": "bin/app.js",
   "scripts": {
     "build": "tsc && cp -r modelParams/ bin/",
-    "start": "npm run build && node bin/app.js -d \"../data-sets/aliens-humans-2\" -g -m \"./modelParams/modelParams.json\" -o \"./outModel\"",
+    "start": "npm run build && node bin/app.js -d \"../data-sets/aliens-humans-2\" -g -m \"./modelParams/modelParams.json\" -o \"./outModel/aliens2\"",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "author": "Adam Wozniak",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@tensorflow/tfjs": "^3.21.0",
-    "@tensorflow/tfjs-node-gpu": "^3.21.0",
+    "@tensorflow/tfjs-node": "^3.21.0",
     "command-line-args": "^5.2.1",
     "wait-for-user-input": "^1.0.0"
   }
