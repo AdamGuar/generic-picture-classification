@@ -1,0 +1,9 @@
+{
+    "tensorParams": {
+        "size": [96,96],
+        "channels": 3,
+        "scalar": 255.0
+    },
+    "modelPath": "./modelExample/model.json",
+    "labelsMapping": ["alien", "human"]
+}
