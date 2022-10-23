@@ -12,7 +12,8 @@ function clearResult() {
 }
 
 function setResult(label, score) {
-  resultOut.textContent = `I am ${score} % sure that its ${label.toUpperCase()}`;
+  const percent = parseInt(score * 100);
+  resultOut.textContent = `I am ${percent} % sure that it's ${label.toUpperCase()}`;
   resultBlock.style.display = 'block';
 }
 
@@ -42,7 +43,7 @@ document.getElementById('predictButton').onclick = async function(){
   document.getElementById('resultLoader').style.display = 'block';
 
   let tensor = tf.browser.fromPixels(img, 3)
-		.resizeNearestNeighbor([96,96]) // change the image size here
+		.resizeNearestNeighbor([300,300]) // change the image size here
 		.toInt()
 		.div(tf.scalar(255.0))
 		.expandDims()

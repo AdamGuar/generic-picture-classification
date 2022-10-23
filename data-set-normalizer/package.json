@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
-    "start": "tsc && node bin/index.js -d ../data-sets/flowers/ -r 20 -o ../data-sets/normalized/"
+    "start": "tsc && node bin/index.js -d ../data-sets/rps/ -r 20 -o ../data-sets/normalized/"
   },
   "author": "Adam Wozniak",
   "license": "MIT",

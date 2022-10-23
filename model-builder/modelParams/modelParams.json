@@ -6,14 +6,14 @@
     },
     "architecture": {
         "input": {
-            "size": [96,96],
+            "size": [300,300],
             "channels": 3,
             "scalar_transformation": 255.0
         },
         "architectureName": "GenericCNN",
         "layerSettings": {
             "firstLayer": {
-                "inputShape": [96, 96, 3],
+                "inputShape": [300, 300, 3],
                 "kernelSize": 5,
                 "filters": 8,
                 "strides": 1,
