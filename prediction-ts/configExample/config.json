@@ -1,6 +1,6 @@
 {
     "tensorParams": {
-        "size": [96,96],
+        "size": [300,300],
         "channels": 3,
         "scalar": 255.0
     },

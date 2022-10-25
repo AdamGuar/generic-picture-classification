@@ -17,7 +17,8 @@ async function main() {
     const dataLoader: DataLoader = new DataLoader(
         modelParams.architecture.input.size,
         modelParams.architecture.input.channels,
-        modelParams.architecture.input.scalar_transformation
+        modelParams.architecture.input.scalar_transformation,
+        modelParams.architecture.input.label_count
     );
 
     dataLoader.loadData({

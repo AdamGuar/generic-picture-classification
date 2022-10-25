@@ -15,11 +15,13 @@ export class DataLoader {
     private size: [number, number];
     private channels: number
     private scalar_transformation: number;
+    private label_count: number;
 
-    public constructor(size: [number, number], channels: number, scalar_transformation: number) {
+    public constructor(size: [number, number], channels: number, scalar_transformation: number, label_count: number) {
         this.size = size;
         this.channels = channels,
         this.scalar_transformation = scalar_transformation
+        this.label_count = label_count;
     }
 
     loadData(params: { trainPath: string, testPath: string }): void {
@@ -86,7 +88,7 @@ export class DataLoader {
     private flattenTensor(tensor: TensorModel): FlattenedTensor {
         return {
             images: concat(tensor.images),
-            labels: oneHot(tensor1d(tensor.labels, 'int32'), 5).toFloat()
+            labels: oneHot(tensor1d(tensor.labels, 'int32'), this.label_count).toFloat()
         }
     }
 

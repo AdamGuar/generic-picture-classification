@@ -13,7 +13,8 @@ export class ModelParams {
         input: {
             size: [number, number],
             channels: number,
-            scalar_transformation: number
+            scalar_transformation: number,
+            label_count: number
         }
         architectureName: string,
         layerSettings: LayerSettings

@@ -17,7 +17,7 @@ export class GenericCNN implements ModelArchitecture {
 
         cnn.add(layers.conv2d({
             inputShape: this.layerSettings.firstLayer.inputShape,
-            kernelSize: this.layerSettings.firstLayer.kernelSize,
+            kernelSize: this.layerSettings.kernelSize,
             filters: this.layerSettings.firstLayer.filters,
             strides: this.layerSettings.firstLayer.strides,
             activation: this.layerSettings.firstLayer.activation,
@@ -27,7 +27,7 @@ export class GenericCNN implements ModelArchitecture {
 
         this.layerSettings.middleLayers.forEach(layer=>{
             cnn.add(layers.conv2d({
-                kernelSize: layer.kernelSize,
+                kernelSize: this.layerSettings.kernelSize,
                 filters: layer.filters,
                 strides: layer.strides,
                 activation: layer.activation,
@@ -38,7 +38,7 @@ export class GenericCNN implements ModelArchitecture {
 
         cnn.add(layers.flatten());
         cnn.add(layers.dense({
-            units: this.layerSettings.dense.units,
+            units: this.layerSettings.kernelSize,
             kernelInitializer: this.layerSettings.dense.kernelInitializer,
             activation: this.layerSettings.dense.activation
         }));

@@ -8,10 +8,12 @@
         "input": {
             "size": [300,300],
             "channels": 3,
-            "scalar_transformation": 255.0
+            "scalar_transformation": 255.0,
+            "label_count": 2
         },
         "architectureName": "GenericCNN",
         "layerSettings": {
+            "kernelSize": 2,
             "firstLayer": {
                 "inputShape": [300, 300, 3],
                 "kernelSize": 5,
@@ -52,7 +54,7 @@
                 }
             ],
             "dense": {
-                "units": 5,
+                "units": 1,
                 "kernelInitializer": "varianceScaling",
                 "activation": "softmax"
             },
