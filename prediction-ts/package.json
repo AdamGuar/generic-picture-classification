@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc && cp -r ./modelExample/ ./bin/modelExample/ && cp -r ./imagesExample/ ./bin/imagesExample/ && cp -r ./configExample/ ./bin/configExample/",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
-    "start": "npm run build && node bin/index.js -i \"./imagesExample/niekosmita.jpeg\" -c \"./configExample/config.json\""
+    "start": "npm run build && node bin/index.js -i \"./imagesExample/kosmita.JPG\" -c \"./configExample/config.json\""
   },
   "author": "Adam Wozniak",
   "license": "MIT",

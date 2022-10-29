@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import commandLineArgs from 'command-line-args';
 import { InputParameters, ConfigModel, ConfigLoader } from './modules/InputParameters';
 import * as tf from '@tensorflow/tfjs-node';
@@ -21,7 +22,7 @@ async function predict(imagePath: string, config: ConfigModel): Promise<Predicti
 
     const imageTensor = tf.node.decodeImage(buffer, config.tensorParams.channels)
         .resizeNearestNeighbor(config.tensorParams.size)
-        .toInt()
+        .toFloat()
         .div(tf.scalar(config.tensorParams.scalar))
         .expandDims();
 

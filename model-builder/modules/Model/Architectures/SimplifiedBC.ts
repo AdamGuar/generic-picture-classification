@@ -45,7 +45,7 @@ export class SimplifiedBC implements ModelArchitecture {
 
         cnn.add(layers.flatten());
         cnn.add(layers.dense({
-            units: 5,
+            units: 2,
             kernelInitializer: 'varianceScaling',
             activation: 'softmax'
         }));
